@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+    <style>
+.error {
+color: red;
+font-size: 0.875rem;
+}
+
+.success {
+color: green;
+font-size: 0.875rem;
+}
+
+
+form{
+
+width: 500px;
+height:500px;
+margin: 20px;
+padding: 20px;
+border: solid 3px rgb(140, 149, 247);
+box-shadow: 0 4px 16px #066699;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+letter-spacing:1px;
+background-color: rgba(178, 207, 235, 0.7);
+}
+
+.form_input,
+.form_button {
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+letter-spacing: 1px;
+font-size: 10px;
+}
+
+.form_title{
+text-align: left;
+margin: 0 0 12px 0;
+font-weight: normal;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+color: rgb(5, 42, 75);
+}
+.form_title h4{
+text-align: center;
+margin-top: 10px;
+}
+
+.form_group textarea{
+width: 500px;
+
+display: flex;
+justify-content: center;
+box-shadow: 0 1px 10px #066699;
+border-radius: 10px;
+background-color:rgb(244, 239, 229);
+text-align: initial;
+position: relative;
+
+}
+
+.form_label{
+position:absolute;
+top: 0;
+z-index: -1;
+color:#C7F5F4;
+transition: 0,3s;
+}
+.form_imput{
+width: 50%;
+padding: 0 0 10px 0;
+border: none;
+background-color: transparent;
+border-bottom: 2px solid #e0e0e0;
+outline: none;
+transition:0,3s;
+
+}
+.form_input:focus{
+border-bottom: 2px solid #1a73a8;
+}
+.form_button{
+margin-top: 10px;
+width: 80px;
+height: 30px;
+float: center;
+padding: 10px ;
+border:none;
+color: white;
+background-color:rgb(195, 195, 248);
+outline: none;
+cursor: pointer;
+transition: 0,3s;
+box-shadow: 0 4px 16px #374248;
+}
+.form_button:focus{
+background-color: rgba(0. 113, 240, 0.7);
+}
+.form_button:hover{
+background-color: rgb(13,127,239);
+}
+
+.form_imput:focus,
+.form_imput:not(:placeholder-shown),
+.form_label{
+top: -18px;
+font-size: 12px;
+color: #333131;
+}
+
+label{
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+color: rgb(72, 75, 77);
+font-size: small;
+}
+</style>
+</head>
+<body>
+<form id="miFormulario" onsubmit="return validarFormulario()">
+
+<h2 class="form_title">Queremos conocerte</h2> <br><br>
+<hr>
+<div>
+<div class="form_group">
+<label class="form_l"></label>
+<input class="form_imput"placeholder="nombre">
+</div>
+<div class="form_group">
+<label class="form_l"></label>
+<input class="form_imput"placeholder="apellido">
+</div>                
+<div class="form_group">
+<label class="form_l"></label>
+<input class="form_imput"placeholder="telefono">
+</div>
+<div class="form_group">
+<label class="form_l"></label>
+<input class="form_imput"placeholder="e-mail">
+</div>
+<br><br>
+<div>
+<input type="radio" name="edat" id="edat_menor" value="menor" checked="checked">
+<label for="edat_menor">Menos de 40 años </label>
+
+<input type="radio" name="edat" id="edat_major" value="major" checked="checked">
+<label for="edat_major">De 40 a 65 años </label>
+
+<input type="radio" name="edat" id="edat_jubilat" value="jubilat">
+<label for="edat_jubilat">Mas de 65 años</label>
+<hr />
+</div>
+<br>
+
+<div class="form_group">
+
+<h4 class="form_title">Escribe aquí  tus comentarios:</h4>
+<hr />
+<textarea name="comentari" id="comentari" cols="30" rows="5"></textarea>
+
+</div>
+
+<button class= "form_button">Enviar<type="submit" value= "Enviar"></button>
+
+</div>  
+</form>
+
+<script>
+function validarFormulario() {
+const formulario = document.getElementById('miFormulario');
+if (!formulario.checkValidity()) {
+alert('Completa todos los campos requeridos y verifica el formato.');
+return false;
+}
+
+const nombre = formulario.nombre.value;
+if (!/^[a-zA-Z ]+$/.test(nombre)) {
+alert('El nombre solo puede contener letras y espacios.');
+return false;
+document.getElementById("nombre_error").innerHTML = "El nombre es obligatorio";
+return false;
+}
+
+const apellido = formulario.apellido.value;
+if (!/^[a-zA-Z ]+$/.test(apellido)) {
+alert('El apellido solo puede contener letras y espacios.');
+return false;
+document.getElementById("apellido_error").innerHTML = "El apellido es obligatorio";
+return false;
+}
+
+const email = formulario.email.value;
+const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!regexEmail.test(email)) {
+alert('Introduce una dirección de correo electrónico válida.');
+return false;
+document.getElementById("email_error").innerHTML = "El email es obligatorio";
+return false;
+}
+
+const telefono = formulario.telefono.value;
+if (!/^\+34[6-9][0-9]{8}$/.test(telefono)) {
+alert('El número de teléfono debe tener el formato +34XXXXXXXX.');
+return false;
+document.getElementById("telefono_error").innerHTML = "El telefono es obligatorio";
+return false;
+}
+
+formulario.submit();
+return true;
+}
+</script>
+</body>
+</html>

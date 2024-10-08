@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navegando por el BOM</title>
+    <style>
+        .changeable{
+            color:red;
+            margin: 20px;
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="changeable" onclick="cambia()">
+        <a href="https://onepagelove.com/inspiration/newsletters">¡Cambiar!</a>
+    </div>
+    <img src="img/amor.jpeg" alt="amor">
+    <img src="img/foto1.jpg" alt="foto">
+    
+    <script>
+        function cambia() {
+         const images = document.images
+         const links = document.links
+         images[0].style.border = "solid blu 10px";
+         images[1].scr = "img/amor.jpeg";
+         images[0].scr = "img/foto1.jpg.jpg";
+         links[0].style.color = "blu";
+        } 
+     </script>
+</body>
+</html>
